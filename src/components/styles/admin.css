@@ -244,3 +244,25 @@
     font-size: 2rem;
   }
 }
+.book-editor {
+  margin: 2rem 0;
+  padding: 1rem;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+}
+
+.book-editor input,
+.book-editor textarea {
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+.edit-book-form button {
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+}

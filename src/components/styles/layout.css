@@ -49,3 +49,9 @@ body, html {
 .book-card {
   height: auto !important
 };
+
+.book-id {
+  font-size: 0.8rem;
+  color: #ccc;
+  margin-top: 0.2rem;
+}

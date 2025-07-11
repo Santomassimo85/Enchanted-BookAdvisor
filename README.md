@@ -1,78 +1,84 @@
 
 # Book Advisor
 
-**Book Advisor** is a responsive and immersive front-end web application built with React, designed as a magical and interactive digital library. Users can search for books, add them to favorites, rate them, write reviews, and manage a virtual cart — all in a fantasy-themed interface.
-
+**Book Advisor** is a responsive front-end web application built with React, designed as a fantasy-themed digital library. Users can search for books, add favorites, rate, review, and manage a virtual cart in an immersive interface.
 
 ## Features
 
-- Search books using the **OpenLibrary API**
+- Search books via **OpenLibrary API**
 - Add books to **Favorites** and **Cart**
 - Rate and review books (local storage)
 - Clear favorites and cart
-- View book details dynamically
-- Animated intro screen with a fantasy video
+- Dynamic book details view
+- Animated intro screen with fantasy video
 - Epic loading spinner (GIF warrior with torch)
-- Responsive design (desktop, tablet, mobile)
-- Global state management with **Redux**
-- Smooth navigation with **React Router**
-- Async book search using **fetch**, `useEffect`, and debounce
-
+- Responsive design for desktop, tablet, and mobile
+- Global state management using **Redux**
+- Navigation with **React Router**
+- Async book search with **fetch**, `useEffect`, and debounce
 
 ## Technologies Used
 
 - React (Functional Components)
 - JavaScript ES6+
-- Redux Toolkit (state slices)
+- Redux Toolkit
 - React Router DOM
 - Async JS (fetch / await / useEffect)
-- CSS Modules + Global CSS for responsiveness
-- Sprite/GIF-based pixel animations
+- CSS Modules & Global CSS
+- Sprite/GIF pixel animations
 
-
-## Project Structure (Simplified)
+## Project Structure
 
 ```
-bookAdvisor/
+BOOKADVISOR/
 ├── public/
+│   ├── icons/
+│   ├── images/
+│   └── videos/
+│       ├── book.mp4
+│       └── forest.mp4
+│
 ├── src/
 │   ├── assets/
 │   ├── components/
 │   │   ├── styles/
+│   │   │   ├── admin.css
 │   │   │   ├── bookDetails.css
 │   │   │   ├── cart.css
 │   │   │   ├── home.css
 │   │   │   ├── index.css
-│   │   │   ├── intro.css
 │   │   │   ├── layout.css
 │   │   │   ├── library.css
+│   │   │   ├── login.css
 │   │   │   ├── navbar.css
 │   │   │   ├── profile.css
-│   │   │   └── search.css
+│   │   │   ├── search.css
+│   │   │   └── transition.css
+│   │   ├── AdminPanel.jsx
 │   │   ├── BookDetails.jsx
-│   │   ├── Cart.jsx
-│   │   ├── Home.jsx
-│   │   ├── Intro.jsx
+│   │   ├── home.jsx
 │   │   ├── Layout.jsx
-│   │   ├── Library.jsx
-│   │   ├── Navbar.jsx
-│   │   └── Profile.jsx
-│   ├── redux/
-│   │   ├── slices/
-│   │   │   └── librarySlice.js
-│   │   └── store.js
-│   ├── App.jsx
-│   ├── LibrarySlice.js
-│   ├── fetchBookDetail.js
-│   ├── Main.jsx
-│   ├── Research.jsx
-│   └── index.css
+│   │   ├── Login.jsx
+│   │   ├── Profile.jsx
+│
+├── App.jsx
+├── Cart.jsx
+├── fetchBookDetails.js
+├── Library.jsx
+├── LibrarySlice.js
+├── Main.jsx
+├── Navbar.jsx
+├── Research.jsx
+├── store.js
+│
 ├── .gitignore
 ├── eslint.config.js
-├── package-lock.json
+├── index.html
 ├── package.json
+├── package-lock.json
 ├── README.md
-└── vite.config.js
+├── vite.config.js
+└── vitest.config.js
 
 ```
 
@@ -82,30 +88,31 @@ bookAdvisor/
 npm install
 npm run dev
 ```
-Then open `http://localhost:5173`
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
 ## Educational Goals
 
-This project is a hands-on web app created for a Front-End exam in the **Computer Engineering & AI** Bachelor's program. The main goal was to build a fun, interactive digital library using React. Through this project, I practiced:
+This project was developed for a Front-End exam in the **Computer Engineering & AI** Bachelor's program. The main objectives included:
 
-- Building real-world React apps from scratch
-- Using modern tools and workflows for front-end development
-- Handling async data and giving users clear feedback
-- Organizing code into reusable, scalable components
-- Designing a responsive and engaging user interface
-
+- Building a React app from scratch
+- Using modern front-end tools and workflows
+- Handling async data and user feedback
+- Organizing code into reusable components
+- Designing a responsive, engaging UI
 
 ---
 
 ## Notes
 
-- Reviews are stored in **local memory**
+- Reviews are stored in **local storage**
 - OpenLibrary API is used without authentication
-- Styling inspired by magical forests and old tomes
+- Styling inspired by magical forests and ancient books
 
 ---
 
 ## Author
-**Luca Santomassimo** – [Book Advisor Project for Front-End Exam]
+
+**Luca Santomassimo** – Book Advisor Project for Front-End Exam
+

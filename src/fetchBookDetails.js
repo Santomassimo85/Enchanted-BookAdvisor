@@ -5,6 +5,23 @@ const OPENLIBRARY_WORKS_URL = "https://openlibrary.org/works";
  * @param {string} workId - The OpenLibrary work ID (e.g. OL12345W)
  * @returns {Promise<{title: string, description: string, coverUrl: string}>}
  */
+/**
+ * Fetches book details from the OpenLibrary API for a given work ID.
+ *
+ * @async
+ * @function fetchOpenLibraryDetails
+ * @param {string} workId - The OpenLibrary work ID of the book to fetch.
+ * @returns {Promise<Object>} An object containing the book's title, description, and cover URL.
+ * @property {string} title - The title of the book, or "Untitled" if not available.
+ * @property {string} description - The description of the book, or "No description available." if not present.
+ * @property {string|null} coverUrl - The URL of the book's cover image, or null if not available.
+ *
+ * @throws {Error} Throws an error if the network request fails or the response is not OK.
+ *
+ * @example
+ * const details = await fetchOpenLibraryDetails('OL12345W');
+ * console.log(details.title); // Outputs the book title
+ */
 export async function fetchOpenLibraryDetails(workId) {
   try {
     const res = await fetch(`https://openlibrary.org/works/${workId}.json`);

@@ -154,6 +154,66 @@
   white-space: pre-wrap;
 }
 
+.feedback-form {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  color: #fff;
+}
+
+.stars-input {
+  margin: 0.5rem 0;
+}
+
+.star {
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: gray;
+}
+
+.star.selected {
+  color: gold;
+}
+
+.feedback-form textarea {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.7rem;
+  background-color: #2a2a2a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+}
+
+.feedback-form button {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.2rem;
+}
+
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 3px solid #ccc;
+  border-top: 3px solid #00ffcc;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+  animation: spin 0.8s linear infinite;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
 /* Chrome, Edge, Safari */
 ::-webkit-scrollbar {
   width: 6px;
