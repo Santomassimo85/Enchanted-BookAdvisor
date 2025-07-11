@@ -2,17 +2,33 @@
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Poppins:wght@300;600&display=swap');
 
-
-.home-container {
-  height: 100vh;
+body.no-scroll {
   overflow: hidden;
+  height: 100vh;
+  background-color: black;
 }
 
-.layout-background {
+.home-container {
+top: 0;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* .home-container {
+  height: 100vh;
+  overflow: hidden;
+} */
+
+/* .layout-background {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
+} */
 
 .page-content {
   flex: 1;
@@ -100,7 +116,7 @@
 
 .home-video {
   position: fixed;
-  inset: 0;
+  /* inset: 0; */
   object-fit: cover;
   width: 100vw;
   height: 100vh;
@@ -124,6 +140,6 @@
   position: relative;
   z-index: 1;
   text-align: center;
-  padding-top: 20vh;
+  padding-top: 0;
   color: #fff;
 }
