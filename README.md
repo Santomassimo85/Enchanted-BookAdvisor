@@ -63,6 +63,7 @@ bookAdvisor/
 │   │   └── store.js
 │   ├── App.jsx
 │   ├── LibrarySlice.js
+│   ├── fetchBookDetail.js
 │   ├── Main.jsx
 │   ├── Research.jsx
 │   └── index.css
@@ -107,4 +108,4 @@ This project is a hands-on web app created for a Front-End exam in the **Compute
 ---
 
 ## Author
-**Luca** – [Book Advisor Project for Front-End Exam]
+**Luca Santomassimo** – [Book Advisor Project for Front-End Exam]

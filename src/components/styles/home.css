@@ -36,28 +36,30 @@ top: 0;
   color: #eae7dc;
 }
 
-.overlay {
+/* .overlay {
   background-color: rgba(0, 0, 0, 0.6);
   padding: 50px;
   border-radius: 20px;
   text-align: center;
-}
+} */
 
 .home-title {
-  font-family: 'Cinzel Decorative', serif;
+ font-family: 'IM Fell English';  /* font-family: 'Cinzel Decorative', serif; */
   font-size: 5rem;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 3px;
   position: relative;
   background: linear-gradient(120deg,
+  #3b8838,
+  #98ecbb,
       #f9f2d3,
-      #98ecbb,
-      #5db1f5,
-      #be73f3,
-      #edd776);
+      #f5bd5d,
+      #ffc116
+      );
   background-size: 300% 300%;
   background-clip: text;
+  text-shadow: 0 0 20px #ffc116, 0 0 40px #f5bd5d, 0 0 60px #98ecbb;
   -webkit-background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
@@ -136,10 +138,56 @@ top: 0;
   }
 }
 
-.overlay {
+/* .overlay {
   position: relative;
   z-index: 1;
   text-align: center;
   padding-top: 0;
   color: #fff;
+} */
+
+
+@media (max-width: 768px) {
+  .home-container {
+    height: 100vh;
+    width: 100vw;
+    justify-content: flex-start; 
+    align-items: center;    
+  }
+
+  .home-title {
+    font-size: 4.5rem;
+    letter-spacing: 1px;
+    text-align: center;      
+    margin: 20vh auto 0 auto; /* 20% under nav */
+  }
+
+  .home-subtitle {
+    font-size: 1rem;
+    margin-top: 12px;
+    min-height: 24px;
+    text-align: center;
+  }
+
+  .home-video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-title {
+    font-size: 2.5rem;
+    letter-spacing: 0.5px;
+    text-align: center;
+    margin: 20vh auto 0 auto; /* 20% under nav */
+  }
+
+  .home-subtitle {
+    font-size: 0.9rem;
+    margin-top: 8px;
+    min-height: 20px;
+    text-align: center;
+  }
 }

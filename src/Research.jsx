@@ -9,7 +9,7 @@ import "./components/styles/search.css";
  * Search component that allows users to search books from OpenLibrary,
  * add them to favorites or cart, and view details.
  * Includes debounced input, loading indicator, and toast notifications.
- * 
+ *
  * @component
  */
 function Search() {
@@ -18,6 +18,8 @@ function Search() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const [disabledFavorites, setDisabledFavorites] = useState([]);
+  const [disabledCart, setDisabledCart] = useState([]);
 
   /**
    * Fetch books from OpenLibrary based on the query.
@@ -30,7 +32,9 @@ function Search() {
           setLoading(true);
           try {
             const response = await fetch(
-              `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}`
+              `https://openlibrary.org/search.json?q=${encodeURIComponent(
+                query
+              )}`
             );
 
             if (!response.ok) {
@@ -61,25 +65,37 @@ function Search() {
   }, [query]);
 
   /**
-   * Adds a book to the favorites list in Redux.
-   * @param {Object} book - The book object to add.
+   * Adds the specified book to the favorites list, disables the favorites button for that book,
+   * and displays a success toast notification.
+   *
+   * @param {Object} book - The book object to add to favorites.
+   * @param {string} book.key - Unique identifier for the book.
+   * @param {string} book.title - Title of the book.
    */
   const handleAddToFavorites = (book) => {
     dispatch(addToFavorites(book));
+    setDisabledFavorites((prev) => [...prev, book.key]);
     toast.success(`✅ Added "${book.title}" to Favorites!`);
   };
 
   /**
-   * Adds a book to the shopping cart in Redux.
-   * @param {Object} book - The book object to add.
+   * Handles adding a book to the cart.
+   * Dispatches an action to add the book, disables the cart button for the book,
+   * and shows a success toast notification.
+   *
+   * @param {Object} book - The book object to add to the cart.
+   * @param {string} book.key - Unique identifier for the book.
+   * @param {string} book.title - Title of the book.
    */
   const handleAddToCart = (book) => {
     dispatch(addToCart(book));
+    setDisabledCart((prev) => [...prev, book.key]);
     toast.success(`✅ Added "${book.title}" to Cart!`);
   };
 
   return (
     <div className="search-container">
+      
       <h2>Search for a Book</h2>
 
       <div className="search-box">
@@ -117,7 +133,9 @@ function Search() {
 
             <div className="book-info">
               <h3>{book.title}</h3>
-              <p><em>{book.author_name?.[0] ?? "Unknown Author"}</em></p>
+              <p>
+                <em>{book.author_name?.[0] ?? "Unknown Author"}</em>
+              </p>
             </div>
 
             <div className="book-buttons">
@@ -127,8 +145,21 @@ function Search() {
               >
                 <button className="btn small">Details</button>
               </Link>
-              <button className="btn small" onClick={() => handleAddToFavorites(book)}>❤️</button>
-              <button className="btn small" onClick={() => handleAddToCart(book)}>🛒</button>
+              <button
+                className="btn small"
+                onClick={() => handleAddToFavorites(book)}
+                disabled={disabledFavorites.includes(book.key)}
+              >
+                ❤️
+              </button>
+
+              <button
+                className="btn small"
+                onClick={() => handleAddToCart(book)}
+                disabled={disabledCart.includes(book.key)}
+              >
+                Borrow
+              </button>
             </div>
           </div>
         ))}

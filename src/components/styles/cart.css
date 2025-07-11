@@ -1,9 +1,8 @@
-main {
-  padding-top: 80px; 
-}
+
 
 .cart-container {
-  padding: 40px;
+  padding: 140px;
+  text-align: center;
   color: #eae7dc;
   font-family: 'Cormorant Garamond', serif;
   max-width: 800px;
@@ -46,3 +45,40 @@ main {
   font-weight: bold;
   color: #2e4d32;
 }
+
+.toggle-description {
+  margin-top: 1rem;
+  color: #98ecbb;
+  cursor: pointer;
+  font-style: italic;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.toggle-description:hover {
+  color: #c4ffe2;
+}
+
+.book-description-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+}
+
+.book-description-wrapper.open {
+  max-height: 300px;
+  opacity: 1;
+}
+
+.book-description {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.6rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #f2f2f2;
+  margin-top: 0.5rem;
+  white-space: pre-wrap;
+}
+

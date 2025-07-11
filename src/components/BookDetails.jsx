@@ -90,12 +90,13 @@ function BookDetails() {
         comment,
         cover_i: coverId,
         title: book.title,
+        description: book.description
       })
     );
     toast.success("✅ Review saved!");
 
     setTimeout(() => {
-      navigate("/search", {
+      navigate(location.state?.from ?? "/search", {
         state: {
           restoredQuery: book.title ?? "",
         },

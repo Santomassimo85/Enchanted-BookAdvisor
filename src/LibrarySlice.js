@@ -32,8 +32,14 @@ const librarySlice = createSlice({
       if (index !== -1) state.cart.splice(index, 1);
     },
     saveReview: (state, action) => {
-      const { bookId, rating, comment, cover_i, title } = action.payload; // Destruttura anche cover_i e title
-      state.reviews[bookId] = { rating, comment, cover_i, title }; // Salva cover_i e title
+      const { bookId, rating, comment, cover_i, title, description } = action.payload; // Destruttura anche cover_i e title
+      state.reviews[bookId] = { rating, comment, cover_i, title, description }; // Salva cover_i e title
+    },
+    removeReview: (state, action) => {
+      delete state.reviews[action.payload];
+    },
+    clearReviews: (state) => {
+      state.reviews = {};
     },
   },
 });
@@ -45,6 +51,9 @@ export const {
   clearCart,
   removeFromCart,
   saveReview,
+  removeReview,
+  clearReviews
 } = librarySlice.actions;
+
 
 export default librarySlice.reducer;

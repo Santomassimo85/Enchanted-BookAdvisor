@@ -19,6 +19,19 @@ function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  // video end event to pause and show last frame
+  useEffect(() => {
+    const video = document.getElementById("home-video");
+
+    const onEnd = () => {
+      video.pause();
+      video.currentTime = video.duration; 
+    };
+
+    video.addEventListener("ended", onEnd);
+    return () => video.removeEventListener("ended", onEnd);
+  }, []);
+
   // Blinking bar effect
   useEffect(() => {
     const barInterval = setInterval(() => {
@@ -30,12 +43,13 @@ function Home() {
   return (
     <div className="home-container">
       <video
+        id="home-video"
         className="home-video"
         autoPlay
-        loop
         playsInline
-        src="./videos/forest.mp4"
-      ></video>
+        muted
+        src="./videos/book.mp4"
+      />
 
       <div className="overlay">
         <h1 className="home-title">The Enchanted Book Advisor</h1>
