@@ -38,3 +38,14 @@ body, html {
   padding: 40px;
   box-sizing: border-box;
 }
+.admin-banner {
+  background-color: gold;
+  color: black;
+  font-weight: bold;
+  padding: 5px;
+  text-align: center;
+  margin-top: 10px;
+}
+.book-card {
+  height: auto !important
+};

@@ -55,8 +55,7 @@
   padding: 1rem;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   color: white;
-  min-height: 470px;
-  transition: all 0.2s ease;
+transition: all 0.2s ease;
 }
 
 .book-card img {

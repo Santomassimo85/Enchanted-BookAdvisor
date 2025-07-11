@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeFromFavorites } from "./LibrarySlice";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { saveReview } from "./LibrarySlice";
 import { useState } from "react";
 import "./components/styles/library.css";
 import "./components/styles/transition.css";
@@ -9,6 +10,7 @@ import "./components/styles/transition.css";
 function Library() {
   const favorites = useSelector((state) => state.library.favorites);
   const dispatch = useDispatch();
+  const isAdmin = useSelector((state) => state.library.isAdmin);
 
   const handleRemove = (key) => {
     const book = favorites.find((b) => b.key === key);
@@ -57,7 +59,23 @@ function Library() {
                   <div className="no-cover">No cover</div>
                 )}
 
-                <h3>{book.title}</h3>
+                {isAdmin ? (
+                  <input
+                    type="text"
+                    value={book.title}
+                    onChange={(e) =>
+                      dispatch(
+                        saveReview({
+                          ...book,
+                          title: e.target.value,
+                        })
+                      )
+                    }
+                  />
+                ) : (
+                  <h3>{book.title}</h3>
+                )}
+
                 <p>
                   <em>{book.author_name?.[0] ?? "Unknown Author"}</em>
                 </p>
@@ -72,12 +90,23 @@ function Library() {
                 </p>
 
                 {expandedDescriptions[book.key] && (
-                  <div className="book-description-wrapper open">
-                    <p className="book-description">
-                      {book.description ?? "No description available."}
-                    </p>
-                  </div>
-                )}
+  <div className="book-description-wrapper open">
+    {isAdmin ? (
+      <textarea
+        value={book.description ?? ""}
+        onChange={(e) => dispatch(saveReview({
+          ...book,
+          description: e.target.value
+        }))}
+      />
+    ) : (
+      <p className="book-description">
+        {book.description ?? "No description available."}
+      </p>
+    )}
+  </div>
+)}
+
 
                 <Link
                   to={`/book/${book.key.split("/").pop()}`}

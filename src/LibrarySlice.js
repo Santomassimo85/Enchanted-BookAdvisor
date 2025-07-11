@@ -1,11 +1,11 @@
 // LibrarySlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const initialState = {
   favorites: [],
   cart: [],
   reviews: {}, // { [bookId]: { rating, comment, cover_i, title } }
+  isAdmin: false, // ✅ Aggiunto per gestire il ruolo admin
 };
 
 const librarySlice = createSlice({
@@ -27,20 +27,23 @@ const librarySlice = createSlice({
     clearCart: (state) => {
       state.cart = [];
     },
-
     removeFromCart: (state, action) => {
       const index = state.cart.findIndex((b) => b.key === action.payload);
       if (index !== -1) state.cart.splice(index, 1);
     },
     saveReview: (state, action) => {
-      const { bookId, rating, comment, cover_i, title, description } = action.payload; // Destruttura anche cover_i e title
-      state.reviews[bookId] = { rating, comment, cover_i, title, description }; // Salva cover_i e title
+      const { bookId, rating, comment, cover_i, title, description } = action.payload;
+      state.reviews[bookId] = { rating, comment, cover_i, title, description };
     },
     removeReview: (state, action) => {
       delete state.reviews[action.payload];
     },
     clearReviews: (state) => {
       state.reviews = {};
+    },
+    // ✅ Azione per impostare il ruolo admin
+    setAdmin: (state, action) => {
+      state.isAdmin = action.payload;
     },
   },
 });
@@ -53,8 +56,8 @@ export const {
   removeFromCart,
   saveReview,
   removeReview,
-  clearReviews
+  clearReviews,
+  setAdmin, // ✅ Aggiunto all'export
 } = librarySlice.actions;
-
 
 export default librarySlice.reducer;
