@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Poppins:wght@300;600&display=swap');
+
+
+.home-container {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.layout-background {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
+  /* padding: 40px; */
+  color: #eae7dc;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 50px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.home-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 5rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
+  background: linear-gradient(120deg,
+      #f9f2d3,
+      #98ecbb,
+      #5db1f5,
+      #be73f3,
+      #edd776);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  animation: epicShimmer 4s ease-in-out infinite;
+}
+
+@keyframes epicShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.home-subtitle {
+  font-size: 1.2rem;
+  font-family: 'Georgia', serif;
+  color: #edd7bf;
+  text-align: center;
+  margin-top: 20px;
+  letter-spacing: 1px;
+  min-height: 30px;
+  /* reserve space while typing */
+}
+
+
+.typing-bar {
+  content: '';
+  display: inline-block;
+  width: 0.3em;
+  /* height: 1em; */
+  background-color: #eae7dc;
+  animation: blink 1s step-end infinite;
+}
+
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+
+.home-video {
+  position: fixed;
+  inset: 0;
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  filter: brightness(0.4);
+  z-index: -1;
+  animation: slowZoom 60s linear infinite;
+  overflow: hidden;
+}
+
+@keyframes slowZoom {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+.overlay {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding-top: 20vh;
+  color: #fff;
+}

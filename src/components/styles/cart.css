@@ -1,0 +1,48 @@
+main {
+  padding-top: 80px; 
+}
+
+.cart-container {
+  padding: 40px;
+  color: #eae7dc;
+  font-family: 'Cormorant Garamond', serif;
+  max-width: 800px;
+  margin: 2em auto;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 12px;
+  height: min(70vh) auto;
+}
+
+.clear-btn {
+  background-color: #8c3b2e;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.cart-list {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.book-card {
+  background-color: #2e4d32;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.5);
+}
+
+.book-card button {
+  margin-top: 10px;
+  background-color: #a3d9a5;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #2e4d32;
+}

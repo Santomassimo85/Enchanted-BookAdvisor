@@ -1,0 +1,120 @@
+.profile-container {
+  padding: 40px;
+  color: #eae7dc;
+  font-family: 'Cormorant Garamond', serif;
+  max-width: 800px;
+  margin: 2em auto;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 12px;
+  height: min(70vh) auto;
+}
+
+.clear-btn {
+  background-color: #8c3b2e;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.review-layout {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.review-card {
+background-color: #2e4d32;
+  border-radius: 12px;
+  padding: 1rem;
+  color: #eae7dc;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+}
+.review-card:hover {
+  transform: scale(1.02);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  color: #a3d9a5;
+  margin-bottom: 0.5rem;
+}
+.review-info {
+   margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #f9d976;
+}
+.review-rating {
+  color: #a3d9a5;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.review-comment {
+  color: #ccc;
+  font-style: italic;
+}
+.review-card button {
+  margin-top: 10px;
+  background-color: #a3d9a5;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #2e4d32;
+}
+.review-cover {
+  width: 120px;
+  height: 180px;
+  object-fit: contain;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.no-cover {
+  width: 120px;
+  height: 180px;
+  background-color: #444;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .review-layout {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .review-info {
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .review-cover,
+  .no-cover {
+    width: 160px;
+    height: 220px;
+  }
+}
