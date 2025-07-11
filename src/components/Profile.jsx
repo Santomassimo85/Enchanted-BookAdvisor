@@ -19,12 +19,12 @@ function Profile() {
 
   const handleRemove = (bookId) => {
     dispatch(removeReview(bookId));
-    toast.error("❌ Review removed!");
+    toast.error("Review removed!");
   };
 
   const handleClearAll = () => {
     dispatch(clearReviews());
-    toast.error("🧹 All reviews cleared!");
+    toast.error("All reviews cleared!");
   };
 
   const toggleDescription = (bookId) => {

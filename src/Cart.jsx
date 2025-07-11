@@ -9,14 +9,14 @@ import "./components/styles/transition.css";
 function Cart() {
   const cart = useSelector((state) => state.library.cart);
   const dispatch = useDispatch();
+  const [expandedDescriptions, setExpandedDescriptions] = useState({});
 
   const handleRemove = (key) => {
     const book = cart.find((b) => b.key === key);
     dispatch(removeFromCart(key));
-    toast.error(`❌ Removed "${book?.title}" from Cart`);
+    toast.error(`Removed "${book?.title}" from Cart`);
   };
 
-  const [expandedDescriptions, setExpandedDescriptions] = useState({});
 
   const toggleDescription = (bookId) => {
     setExpandedDescriptions((prev) => ({
@@ -27,7 +27,7 @@ function Cart() {
 
   const handleClearCart = () => {
     dispatch(clearCart());
-    toast.error("🗑️ Cart cleared");
+    toast.error("Cart cleared");
   };
 
   return (
@@ -39,7 +39,7 @@ function Cart() {
       ) : (
         <>
           <button className="clear-btn" onClick={handleClearCart}>
-            🗑️ Clear Cart
+            Clear Cart
           </button>
 
           <div className="cart-list results-grid">

@@ -8,9 +8,6 @@ import "./components/styles/search.css";
 /**
  * Search component that allows users to search books from OpenLibrary,
  * add them to favorites or cart, and view details.
- * Includes debounced input, loading indicator, and toast notifications.
- *
- * @component
  */
 function Search() {
   const location = useLocation();
@@ -18,13 +15,11 @@ function Search() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+
   const [disabledFavorites, setDisabledFavorites] = useState([]);
   const [disabledCart, setDisabledCart] = useState([]);
+  const [expandedDescriptions, setExpandedDescriptions] = useState({});
 
-  /**
-   * Fetch books from OpenLibrary based on the query.
-   * Uses debounce to delay fetch by 500ms after typing stops.
-   */
   useEffect(() => {
     const delay = setTimeout(() => {
       if (query.length >= 3) {
@@ -32,18 +27,11 @@ function Search() {
           setLoading(true);
           try {
             const response = await fetch(
-              `https://openlibrary.org/search.json?q=${encodeURIComponent(
-                query
-              )}`
+              `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}`
             );
-
-            if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const data = await response.json();
 
-            // Simulated loading delay for UI polish
             setTimeout(() => {
               setBooks(data.docs.slice(0, 10));
               setLoading(false);
@@ -54,7 +42,6 @@ function Search() {
             setLoading(false);
           }
         };
-
         fetchBooks();
       } else {
         setBooks([]);
@@ -64,38 +51,39 @@ function Search() {
     return () => clearTimeout(delay);
   }, [query]);
 
-  /**
-   * Adds the specified book to the favorites list, disables the favorites button for that book,
-   * and displays a success toast notification.
-   *
-   * @param {Object} book - The book object to add to favorites.
-   * @param {string} book.key - Unique identifier for the book.
-   * @param {string} book.title - Title of the book.
-   */
+  const extractDescription = (book) =>
+    book.description ??
+    (typeof book.first_sentence === "object"
+      ? book.first_sentence?.value
+      : book.first_sentence);
+
   const handleAddToFavorites = (book) => {
-    dispatch(addToFavorites(book));
+    dispatch(addToFavorites({
+      ...book,
+      description: extractDescription(book),
+    }));
     setDisabledFavorites((prev) => [...prev, book.key]);
     toast.success(`✅ Added "${book.title}" to Favorites!`);
   };
 
-  /**
-   * Handles adding a book to the cart.
-   * Dispatches an action to add the book, disables the cart button for the book,
-   * and shows a success toast notification.
-   *
-   * @param {Object} book - The book object to add to the cart.
-   * @param {string} book.key - Unique identifier for the book.
-   * @param {string} book.title - Title of the book.
-   */
   const handleAddToCart = (book) => {
-    dispatch(addToCart(book));
+    dispatch(addToCart({
+      ...book,
+      description: extractDescription(book),
+    }));
     setDisabledCart((prev) => [...prev, book.key]);
     toast.success(`✅ Added "${book.title}" to Cart!`);
   };
 
+  const toggleDescription = (bookId) => {
+    setExpandedDescriptions((prev) => ({
+      ...prev,
+      [bookId]: !prev[bookId],
+    }));
+  };
+
   return (
     <div className="search-container">
-      
       <h2>Search for a Book</h2>
 
       <div className="search-box">
@@ -133,8 +121,21 @@ function Search() {
 
             <div className="book-info">
               <h3>{book.title}</h3>
-              <p>
-                <em>{book.author_name?.[0] ?? "Unknown Author"}</em>
+              <p><em>{book.author_name?.[0] ?? "Unknown Author"}</em></p>
+            </div>
+
+            <p
+              className="toggle-description"
+              onClick={() => toggleDescription(book.key)}
+            >
+              {expandedDescriptions[book.key]
+                ? "Close the description"
+                : "Show description"}
+            </p>
+
+            <div className={`book-description-wrapper ${expandedDescriptions[book.key] ? "open" : ""}`}>
+              <p className="book-description">
+                {extractDescription(book) ?? "No description available."}
               </p>
             </div>
 
@@ -143,8 +144,9 @@ function Search() {
                 to={`/book/${book.key.split("/").pop()}`}
                 state={{ bookTitle: book.title, coverId: book.cover_i }}
               >
-                <button className="btn small">Details</button>
+                <button className="btn small">Add Review</button>
               </Link>
+
               <button
                 className="btn small"
                 onClick={() => handleAddToFavorites(book)}

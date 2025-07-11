@@ -121,7 +121,7 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   color: white;
   min-height: 500px;
-  height: 500px;
+  height: auto;
   transition: all 0.2s ease;
 }
 
@@ -154,6 +154,11 @@
   box-shadow: 0 4px 16px rgba(141,123,104,0.3);
 }
 
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
 
 
 

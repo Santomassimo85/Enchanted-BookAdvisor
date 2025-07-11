@@ -13,7 +13,7 @@ function Library() {
   const handleRemove = (key) => {
     const book = favorites.find((b) => b.key === key);
     dispatch(removeFromFavorites(key));
-    toast.error(`❌ Removed "${book?.title}" from Favorites`);
+    toast.error(`Removed "${book?.title}" from Favorites`);
   };
 
   const [expandedDescriptions, setExpandedDescriptions] = useState({});
@@ -29,7 +29,7 @@ function Library() {
     favorites.forEach((book) => {
       dispatch(removeFromFavorites(book.key));
     });
-    toast.error("❌ All favorites cleared!");
+    toast.error("All favorites cleared!");
   };
 
   return (
